@@ -1,0 +1,1 @@
+include ':demoapp', ':lib', ':example'

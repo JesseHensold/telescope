@@ -1,0 +1,21 @@
+ext {
+    projectName = "telescope"
+    projectVersion = [
+            major: 0,
+            minor: 1,
+            patch: 0,
+            build: Integer.parseInt(System.getenv("DRONE_BUILD_NUMBER") ?:"0")
+    ]
+    projectVersionName = "${projectVersion.major}.${projectVersion.minor}.${projectVersion.patch}"
+    projectVersionCode = projectVersion.major*10000000+projectVersion.minor*100000+projectVersion.patch*1000+projectVersion.build
+    supportLibVersion = "27.0.2"
+    gradleGroupId = "com.hensold"
+    isCi = System.getenv("DRONE")!=null
+    hockeyToken = project.hasProperty("hockeyToken") ? project.hockeyToken : ""
+}
+//just for debugging
+afterEvaluate{
+    if(isCi){
+        println "Detected CI environment"
+    }
+}
